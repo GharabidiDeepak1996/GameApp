@@ -6,11 +6,22 @@ import StartGameScreen from './screen/StartGameScreen';
 import GameScreen from './screen/GameScreen';
 import Colors from './constants/colors';
 import GameOverScreen from './screen/GameOverScreen';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 export default function App() {
 
   const [userNumber, setUserNumber] = useState()
   const [gameIsOver, setGameIsOver] = useState(true)
+
+  const [fontsLoaded] = useFonts({ //custom fonts
+    'roboto-mono': require('./assets/fonts/RobotoMono-Regular.ttf'),
+    'roboto-mono-bold': require('./assets/fonts/RobotoMono-Bold.ttf')
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading/>;
+  }
 
   function pickedNumberHandler(pickedNumber){
     setUserNumber(pickedNumber)
@@ -34,12 +45,12 @@ export default function App() {
     <LinearGradient 
     colors={[Colors.primary700,Colors.accent500]} 
     style = {styles.rootScreen}>
-      <ImageBackground source={require('./assets/playing_die.jpg')} 
+      <ImageBackground source={require('./assets/images/playing_die.jpg')} 
       resizeMode='cover'
       style = {styles.rootScreen}
       imageStyle = {styles.backgroundImage}>
       <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
+      </ImageBackground>  
     </LinearGradient> 
   )
 }

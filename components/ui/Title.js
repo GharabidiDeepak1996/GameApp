@@ -10,6 +10,7 @@ export default function Title({children}){
 
 const styles = StyleSheet.create({
     title :{
+        fontFamily:'roboto-mono-bold',
         borderColor: Colors.accent500,
         borderWidth:2,
         fontSize:24,
